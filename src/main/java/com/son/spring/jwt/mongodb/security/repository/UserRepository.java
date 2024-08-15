@@ -1,4 +1,4 @@
-package com.son.spring.jwt.mongodb.repository;
+package com.son.spring.jwt.mongodb.security.repository;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.son.spring.jwt.mongodb.repository;
+package com.son.spring.jwt.mongodb.security.repository;
 
 import com.son.spring.jwt.mongodb.models.BlacklistedToken;
 import org.springframework.data.mongodb.repository.MongoRepository;

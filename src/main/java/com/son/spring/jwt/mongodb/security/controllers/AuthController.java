@@ -1,14 +1,14 @@
-package com.son.spring.jwt.mongodb.controllers;
+package com.son.spring.jwt.mongodb.security.controllers;
 
 import com.son.spring.jwt.mongodb.models.ERole;
 import com.son.spring.jwt.mongodb.models.Role;
 import com.son.spring.jwt.mongodb.models.User;
-import com.son.spring.jwt.mongodb.payload.request.LoginRequest;
-import com.son.spring.jwt.mongodb.payload.request.SignupRequest;
-import com.son.spring.jwt.mongodb.payload.response.JwtResponse;
-import com.son.spring.jwt.mongodb.payload.response.MessageResponse;
-import com.son.spring.jwt.mongodb.repository.RoleRepository;
-import com.son.spring.jwt.mongodb.repository.UserRepository;
+import com.son.spring.jwt.mongodb.security.payload.request.LoginRequest;
+import com.son.spring.jwt.mongodb.security.payload.request.SignupRequest;
+import com.son.spring.jwt.mongodb.security.payload.response.JwtResponse;
+import com.son.spring.jwt.mongodb.security.payload.response.MessageResponse;
+import com.son.spring.jwt.mongodb.security.repository.RoleRepository;
+import com.son.spring.jwt.mongodb.security.repository.UserRepository;
 import com.son.spring.jwt.mongodb.security.jwt.JwtUtils;
 import com.son.spring.jwt.mongodb.security.services.BlacklistService;
 import com.son.spring.jwt.mongodb.security.services.UserDetailsImpl;
@@ -24,10 +24,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -94,9 +95,15 @@ public class AuthController {
 		}
 
 		// Create new user's account
-		User user = new User(signUpRequest.getUsername(), 
-							 signUpRequest.getEmail(),
-							 encoder.encode(signUpRequest.getPassword()));
+		User user = User.builder().username(signUpRequest.getUsername())
+				.password(encoder.encode(signUpRequest.getPassword()))
+				.email(signUpRequest.getEmail())
+				.fileInfos(new ArrayList<>())
+				.activityLogs(new ArrayList<>())
+				.historyUsers(new ArrayList<>())
+				.createdAt(LocalDateTime.now())
+				.build();
+
 
 		Set<String> strRoles = signUpRequest.getRoles();
 		Set<Role> roles = new HashSet<>();

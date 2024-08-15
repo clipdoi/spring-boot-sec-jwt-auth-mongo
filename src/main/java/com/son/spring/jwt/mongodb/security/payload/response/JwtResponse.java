@@ -1,4 +1,4 @@
-package com.son.spring.jwt.mongodb.payload.response;
+package com.son.spring.jwt.mongodb.security.payload.response;
 
 import java.util.List;
 
