@@ -1,4 +1,4 @@
-package com.son.spring.jwt.mongodb.controllers;
+package com.son.spring.jwt.mongodb.security.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

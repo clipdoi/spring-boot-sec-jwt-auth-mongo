@@ -1,4 +1,4 @@
-package com.son.spring.jwt.mongodb.payload.response;
+package com.son.spring.jwt.mongodb.security.payload.response;
 
 public class MessageResponse {
 	private String message;

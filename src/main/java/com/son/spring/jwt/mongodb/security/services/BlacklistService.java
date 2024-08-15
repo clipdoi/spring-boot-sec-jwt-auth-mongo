@@ -1,7 +1,7 @@
 package com.son.spring.jwt.mongodb.security.services;
 
 import com.son.spring.jwt.mongodb.models.BlacklistedToken;
-import com.son.spring.jwt.mongodb.repository.BlacklistRepository;
+import com.son.spring.jwt.mongodb.security.repository.BlacklistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
